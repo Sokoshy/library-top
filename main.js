@@ -15,7 +15,6 @@ function addBookToLibrary(title, author, page, read) {
 
 addBookToLibrary("Dune", "Frank Herbert", 412, true);
 addBookToLibrary("1984", "George Orwell", 328, false);
-console.log(myLibrary);
 
 function displayBook(bookArray) {
   const displayDiv = document.getElementById("library");
@@ -35,7 +34,20 @@ function displayBook(bookArray) {
       removeBook(e.currentTarget.dataset.id);
     })
 
+    const toggleBtn = document.createElement("button");
+    toggleBtn.textContent = "Toggle Read";
+    toggleBtn.dataset.id = book.id;
+    
+    toggleBtn.addEventListener("click", (e) => {
+      const index = myLibrary.findIndex((b) => b.id === e.currentTarget.dataset.id);
+      const found = myLibrary[index];
+
+      found.toggleRead();
+      displayBook(myLibrary);
+    })
+
     newDiv.append(removeBtn);
+    newDiv.append(toggleBtn);
     displayDiv.append(newDiv);
   }
 }
@@ -44,6 +56,10 @@ function removeBook(id) {
   const index = myLibrary.findIndex((b) => b.id === id);
   if(index !== -1) myLibrary.splice(index, 1);
   displayBook(myLibrary);
+}
+
+Book.prototype.toggleRead = function() {
+  this.read = !this.read;
 }
 
  displayBook(myLibrary);
