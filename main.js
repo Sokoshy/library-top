@@ -62,4 +62,24 @@ Book.prototype.toggleRead = function() {
   this.read = !this.read;
 }
 
+const newBookBtn = document.getElementById("new-book");
+const dialog = document.getElementById("book-dialog");
+const cancelBtn = document.getElementById("cancel");
+const form = document.getElementById("book-form");
+
+newBookBtn.addEventListener("click", () => dialog.showModal());
+cancelBtn.addEventListener("click", () => dialog.close());
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const title = document.getElementById("f-title").value;
+  const author = document.getElementById("f-author").value;
+  const page = Number(document.getElementById("f-pages").value);
+  const read = document.getElementById("f-read").checked;
+
+  addBookToLibrary(title, author, page, read)
+  displayBook(myLibrary);
+  dialog.close();
+  form.reset()
+});
+
  displayBook(myLibrary);
