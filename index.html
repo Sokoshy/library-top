@@ -11,5 +11,18 @@
   <h1>Library Book</h1>
   <div id="library"></div>
   <button type="button" id="new-book">New Book</button>
+  <dialog id="book-dialog">
+     <form id="book-form">
+      <label for="f-title">Book title</label>
+      <input id="f-title" required>
+      <label for="f-author">Book author</label>
+      <input id="f-author" required>
+      <label for="f-pages">Number of page</label>
+      <input id="f-pages" type="number" min="1" required>
+      <label><input id="f-read" type="checkbox"> Read?</label>
+      <button type="submit">Add</button>
+      <button type="button" id="cancel">Cancel</button>
+     </form>
+   </dialog>
   </body>
 </html>
